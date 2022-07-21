@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import CartContext from '../store/cart-context';
 
 import classes from './AuthForm.module.css';
 
@@ -7,6 +8,7 @@ const AuthForm = () => {
   const passwordInputRe = useRef()
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
+  const cartCtx = useContext(CartContext)
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -19,8 +21,6 @@ const AuthForm = () => {
     const enteredPassword = passwordInputRe.current.value;
 
     let url;
-     
-
     setIsLoading(true)
     if(isLogin){
       url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBQmo4Ut73CtOvfa_0Mf02t_z3qMgP4dIQ'
@@ -51,13 +51,15 @@ const AuthForm = () => {
           
         })
       }
-    }).then((data) => {
-      console.log(data)
-    })
+    }).then((data) => (
+      cartCtx.logIn({email: data.email, token: data.idToken})
+    ))
     .catch((err) =>{
       alert(err.errorMessage)
     })
   }
+
+  console.log(cartCtx.items)
 
   return (
     <section className={classes.auth}>
