@@ -12,8 +12,8 @@ const CartProvider = (props) => {
         }
     }
 
-  const addItemToCartHandler = (tokens) => {
-    setcartitems([...token, tokens])
+  const addItemToCartHandler = (token1) => {
+    setcartitems([...token, token1])
   };
   const logoutHandler = () => {
     setcartitems([])
