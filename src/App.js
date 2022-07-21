@@ -7,6 +7,7 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import CartContext from "./components/store/cart-context";
 
+
 function App() {
   const cartCtx = useContext(CartContext);
   console.log(cartCtx.isisLoggedIn)
@@ -18,7 +19,8 @@ function App() {
           <Route path="/" exact>
             <HomePage />
           </Route>
-          <Route path="/auth">
+          <Route path="/auth" >
+            
           <AuthPage />
           </Route>
           <Route path="/profile">

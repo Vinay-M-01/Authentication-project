@@ -1,9 +1,12 @@
 import { useState, useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import CartContext from '../store/cart-context';
 
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+  const history = useHistory()
   const emialInputRef = useRef()
   const passwordInputRe = useRef()
   const [isLogin, setIsLogin] = useState(true);
@@ -51,9 +54,10 @@ const AuthForm = () => {
           
         })
       }
-    }).then((data) => (
+    }).then((data) => {
       cartCtx.logIn({email: data.email, token: data.idToken})
-    ))
+      history.replace('/profile')
+  })
     .catch((err) =>{
       alert(err.errorMessage)
     })

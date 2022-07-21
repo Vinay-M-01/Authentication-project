@@ -1,13 +1,16 @@
 import { useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import CartContext from '../store/cart-context';
 import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
+  const history = useHistory()
   const newPasswordInputRef = useRef()
   const cartCtx = useContext(CartContext)
   console.log(cartCtx)
 
   const submitHandler =(e) =>{
+    
     e.preventDefault()
 
     const enteredNewPassword = newPasswordInputRef.current.value 
@@ -23,7 +26,7 @@ const ProfileForm = () => {
         'Content-Type': 'application/json'
       }
     }).then((res) => {
-      //bkjnfdmgj
+      history.replace("/")
     })
   }
   return (

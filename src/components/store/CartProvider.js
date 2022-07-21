@@ -1,7 +1,9 @@
 import CartContext from "./cart-context";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const CartProvider = (props) => {
+  const histroy = useHistory()
     let [token, setcartitems] = useState([])
 
     const checkStatus = () => {
@@ -17,6 +19,7 @@ const CartProvider = (props) => {
   };
   const logoutHandler = () => {
     setcartitems([])
+    histroy.replace("/auth")
   } 
 
   const cartContext = {
