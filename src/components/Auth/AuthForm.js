@@ -47,23 +47,22 @@ const AuthForm = () => {
       }else{
         return res.json().then(data => {
           let errorMessage = 'Authentication Failed';
-          if(data && data.error && data.error.message){
-            errorMessage = data.error.message
-          }
+          // if(data && data.error && data.error.message){
+          //   errorMessage = data.error.message
+          // }
           throw new Error(errorMessage);
           
         })
       }
     }).then((data) => {
-      cartCtx.logIn({email: data.email, token: data.idToken})
+      cartCtx.logIn(data.idToken)
+      localStorage.setItem('token', data.idToken)
       history.replace('/profile')
   })
     .catch((err) =>{
       alert(err.errorMessage)
     })
   }
-
-  console.log(cartCtx.items)
 
   return (
     <section className={classes.auth}>

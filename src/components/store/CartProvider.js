@@ -4,22 +4,18 @@ import { useHistory } from "react-router-dom";
 
 const CartProvider = (props) => {
   const histroy = useHistory()
-    let [token, setcartitems] = useState([])
+    let [token, setcartitems] = useState(localStorage.getItem('token'))
 
-    const checkStatus = () => {
-        if(token.length === 0){
-            return false
-        }else{
-            return true
-        }
-    }
+    const checkStatus = !!token
 
   const addItemToCartHandler = (token1) => {
-    setcartitems([...token, token1])
+    setcartitems(token1)
+    
   };
   const logoutHandler = () => {
-    setcartitems([])
+    setcartitems(null)
     histroy.replace("/auth")
+    localStorage.removeItem('token')
   } 
 
   const cartContext = {

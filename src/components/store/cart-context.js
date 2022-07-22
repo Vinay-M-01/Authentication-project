@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CartContext = React.createContext({
-  items: [],
+  items: '',
   isisLoggedIn : false,
   logIn: (item) => {},
   logOut: () => {}

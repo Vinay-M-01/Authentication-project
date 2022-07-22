@@ -15,13 +15,13 @@ const MainNavigation = () => {
       <nav>
         <ul>
           <li>
-            {!cartCtx.isisLoggedIn() && <Link to='/auth'>Login</Link>}
+            {!cartCtx.isisLoggedIn && (<Link to='/auth'>Login</Link>)}
           </li>
           <li>
-            {cartCtx.isisLoggedIn() && <Link to='/profile'>Profile</Link>}
+            {cartCtx.isisLoggedIn && <Link to='/profile'>Profile</Link>}
           </li>
           <li>
-            {cartCtx.isisLoggedIn() && <button onClick={cartCtx.logOut}>Logout</button>}
+            {cartCtx.isisLoggedIn && <button onClick={cartCtx.logOut}>Logout</button>}
           </li>
         </ul>
       </nav>
